@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Sep 06 2019 T.I.: refactored data members in the "Form1" class
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -86,5 +88,8 @@ namespace COMPortTest
         {
             this.textBox2.Text += text;
         }
+
+        private SerialPort ComPort;
+        private string InputData;
     }
 }

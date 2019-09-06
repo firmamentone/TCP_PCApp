@@ -1,6 +1,4 @@
 ﻿
-using System.IO.Ports;
-
 namespace COMPortTest
 {
     partial class Form1
@@ -147,8 +145,6 @@ namespace COMPortTest
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox2;
 
-        private SerialPort ComPort;
-        private string InputData;
     }
 }
 
