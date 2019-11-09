@@ -18,3 +18,13 @@ C:\Users\firmament_solo\OneDrive\溫控平台\COMPortTest\SVN\ComPortTest_CS\COM
 C:\Users\firmament_solo\OneDrive\溫控平台\COMPortTest\SVN\ComPortTest_CS\COMPortTest\COMPortTest\obj\Debug\COMPortTest.csproj.CoreCompileInputs.cache
 C:\Users\firmament_solo\OneDrive\溫控平台\COMPortTest\SVN\ComPortTest_CS\COMPortTest\COMPortTest\obj\Debug\COMPortTest.exe
 C:\Users\firmament_solo\OneDrive\溫控平台\COMPortTest\SVN\ComPortTest_CS\COMPortTest\COMPortTest\obj\Debug\COMPortTest.pdb
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\obj\Debug\COMPortTest.csprojAssemblyReference.cache
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\obj\Debug\COMPortTest.Form1.resources
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\obj\Debug\COMPortTest.csproj.GenerateResource.cache
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\obj\Debug\COMPortTest.csproj.CoreCompileInputs.cache
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\bin\Debug\TCP_PCAPP.exe.config
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\bin\Debug\TCP_PCAPP.exe
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\bin\Debug\TCP_PCAPP.pdb
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\obj\Debug\TCP_PCAPP.Properties.Resources.resources
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\obj\Debug\TCP_PCAPP.exe
+C:\Users\firmament_solo\OneDrive\溫控平台\TCP_PCApp\TCP_PCApp\COMPortTest\COMPortTest\obj\Debug\TCP_PCAPP.pdb

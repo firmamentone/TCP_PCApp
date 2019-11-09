@@ -1,4 +1,5 @@
-﻿//Sep 06 2019 T.I.: refactored data members in the "Form1" class
+﻿//Nov 09 2019 T.I.: Timer1 test with "F101, F102"
+//Sep 06 2019 T.I.: refactored data members in the "Form1" class
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
-
+using System.Threading;
 
 
 namespace COMPortTest
@@ -62,12 +63,15 @@ namespace COMPortTest
 
             ComPort.PortName = comboBox1.Text;
             ComPort.Open();
+
+            timer1.Enabled = true;
      
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             ComPort.Close();
         }
 
@@ -86,10 +90,58 @@ namespace COMPortTest
 
         private void SetText(string text)
         {
-            this.textBox2.Text += text;
+            int s1 = 0;
+
+            InputDataBuffer += text;
+
+            s1 = InputDataBuffer.IndexOf("\r\n");
+            if (s1 > -1)
+            {
+                this.textBox2.Text += InputDataBuffer;
+                InputDataBuffer = null;
+
+
+            }
+
         }
 
         private SerialPort ComPort;
         private string InputData;
+        private string InputDataBuffer;
+        private string strHeatingValue="000";
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            strHeatingValue = "000";
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            strHeatingValue = "255";
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            strHeatingValue = "170";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            strHeatingValue = "085";
+          
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            InputDataBuffer = null;
+
+            ComPort.Write("F101");
+
+            Thread.Sleep(100);
+
+            InputDataBuffer = null;
+            ComPort.Write("F102Q"+ strHeatingValue);
+          
+        }
     }
 }
