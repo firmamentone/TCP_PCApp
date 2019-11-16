@@ -1,4 +1,8 @@
-﻿//Nov 09 2019 T.I.: Timer1 test with "F101, F102"
+﻿//Nov 17 2019 T.I.: Fixed "#1 init failed if user start app without comport connect"
+//                  Added temperature display
+//                  Added comport Paser framework
+//                  Added graphic sample
+//Nov 09 2019 T.I.: Timer1 test with "F101, F102"
 //Sep 06 2019 T.I.: refactored data members in the "Form1" class
 
 using System;
@@ -18,9 +22,15 @@ namespace COMPortTest
 {
     public partial class Form1 : Form
     {
+        Bitmap DrawArea;
+        float tempC;
+        float tmpADC;
         public Form1()
         {
             InitializeComponent();
+
+            DrawArea = new Bitmap(pictureBox1.Size.Width, pictureBox1.Size.Height);
+            pictureBox1.Image = DrawArea;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -29,18 +39,36 @@ namespace COMPortTest
             string[] ArrayComPortsNames = null;
             int index = -1;
             string ComPortName = null;
+            int comprotOpenFailed=0;
 
-            ArrayComPortsNames = SerialPort.GetPortNames();
-            do
-            {
-                index += 1;
 
-                comboBox1.Items.Add(ArrayComPortsNames[index]);
+             // Get a list of serial port names.
+             ArrayComPortsNames = SerialPort.GetPortNames();
+
+             if (0<ArrayComPortsNames.Length)
+             {
+
+                do
+                {
+                    index += 1;
+
+                    comboBox1.Items.Add(ArrayComPortsNames[index]);
+                }
+                while (!((ArrayComPortsNames[index] == ComPortName) ||
+                                   (index == ArrayComPortsNames.GetUpperBound(0))));
+
+
             }
-            while (!((ArrayComPortsNames[index] == ComPortName) ||
-                                (index == ArrayComPortsNames.GetUpperBound(0))));
+            
 
 
+            Graphics g;
+            g = Graphics.FromImage(DrawArea);
+
+            Pen mypen = new Pen(Brushes.Black);
+            g.DrawLine(mypen, 0, 0, 200, 200);
+            g.Clear(Color.White);
+            g.Dispose();
 
         }
 
@@ -64,8 +92,6 @@ namespace COMPortTest
             ComPort.PortName = comboBox1.Text;
             ComPort.Open();
 
-            timer1.Enabled = true;
-     
 
         }
 
@@ -91,6 +117,9 @@ namespace COMPortTest
         private void SetText(string text)
         {
             int s1 = 0;
+            string cmdRec;
+            string parRec0;
+            
 
             InputDataBuffer += text;
 
@@ -98,11 +127,30 @@ namespace COMPortTest
             if (s1 > -1)
             {
                 this.textBox2.Text += InputDataBuffer;
+                cmdRec = InputDataBuffer.Substring(0, 4);
+
+                if("F101"== cmdRec)
+                {
+                    //-5.5417x+67.6
+                    
+                    parRec0 = InputDataBuffer.Substring(5, 3);
+                    tmpADC = Convert.ToSingle(parRec0);
+                    tempC = (0.1153F * tmpADC) - 34.629F;
+
+                }
+               
+
+
                 InputDataBuffer = null;
 
 
             }
 
+        }
+        private float ADCtoTmpC(int ADCValue)
+        {
+
+            return 1;
         }
 
         private SerialPort ComPort;
@@ -141,7 +189,50 @@ namespace COMPortTest
 
             InputDataBuffer = null;
             ComPort.Write("F102Q"+ strHeatingValue);
-          
+
+            label2.Text = tempC.ToString();
+
+            /*
+                        Graphics g;
+                        g = Graphics.FromImage(DrawArea);
+
+                        Pen mypen = new Pen(Color.Black);
+
+                        g.DrawLine(mypen, 0, 0, 200, 150);
+
+                        pictureBox1.Image = DrawArea;
+
+                        g.Dispose();
+
+            */
+
+            /*
+            Graphics g;
+            g = Graphics.FromImage(DrawArea);
+
+            Pen mypen = new Pen(Color.Black);
+
+            //g.DrawLine(mypen, 0, 0, 200, 150);
+            g.DrawEllipse(mypen, 0, 0, 20, 20);
+            pictureBox1.Image = DrawArea;
+
+            g.Dispose();
+            */
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -43,7 +43,15 @@ namespace COMPortTest
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -99,14 +107,14 @@ namespace COMPortTest
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(52, 194);
+            this.textBox1.Location = new System.Drawing.Point(787, 39);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(429, 25);
+            this.textBox1.Size = new System.Drawing.Size(247, 25);
             this.textBox1.TabIndex = 1;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(501, 194);
+            this.button3.Location = new System.Drawing.Point(1040, 37);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(68, 25);
             this.button3.TabIndex = 2;
@@ -116,16 +124,17 @@ namespace COMPortTest
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(52, 239);
+            this.textBox2.Location = new System.Drawing.Point(787, 85);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(429, 186);
+            this.textBox2.Size = new System.Drawing.Size(321, 462);
             this.textBox2.TabIndex = 3;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(52, 494);
+            this.button4.Location = new System.Drawing.Point(61, 585);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(55, 49);
             this.button4.TabIndex = 4;
@@ -135,32 +144,35 @@ namespace COMPortTest
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(156, 494);
+            this.button5.BackColor = System.Drawing.Color.Yellow;
+            this.button5.Location = new System.Drawing.Point(165, 585);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(55, 49);
             this.button5.TabIndex = 5;
             this.button5.Text = "1";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(272, 494);
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button6.Location = new System.Drawing.Point(281, 585);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(55, 49);
             this.button6.TabIndex = 6;
             this.button6.Text = "2";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(385, 494);
+            this.button7.BackColor = System.Drawing.Color.Red;
+            this.button7.Location = new System.Drawing.Point(394, 585);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(55, 49);
             this.button7.TabIndex = 7;
             this.button7.Text = "3";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // timer1
@@ -168,11 +180,70 @@ namespace COMPortTest
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(52, 247);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(356, 300);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(52, 197);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 25);
+            this.textBox3.TabIndex = 9;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(167, 181);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(99, 41);
+            this.button8.TabIndex = 10;
+            this.button8.Text = "set";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(49, 179);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Target";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(488, 247);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(68, 300);
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("ROG Fonts", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(481, 197);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 40);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "000";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 593);
+            this.ClientSize = new System.Drawing.Size(1193, 856);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -185,6 +256,8 @@ namespace COMPortTest
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,6 +278,12 @@ namespace COMPortTest
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label2;
     }
 }
 
