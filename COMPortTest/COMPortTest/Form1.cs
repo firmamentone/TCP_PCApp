@@ -1,4 +1,5 @@
-﻿//Nov 17 2019 T.I.: Fixed "#1 init failed if user start app without comport connect"
+﻿//Dec 01 2019 T.I.: Added log save
+//Nov 17 2019 T.I.: Fixed "#1 init failed if user start app without comport connect"
 //                  Added temperature display
 //                  Added comport Paser framework
 //                  Added graphic sample
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
+using System.IO;
 
 
 namespace COMPortTest
@@ -25,6 +27,9 @@ namespace COMPortTest
         Bitmap DrawArea;
         float tempC;
         float tmpADC;
+        float targetC;
+        StreamWriter sw;
+
         public Form1()
         {
             InitializeComponent();
@@ -59,8 +64,13 @@ namespace COMPortTest
 
 
             }
-            
+            else
+            {
+                comprotOpenFailed = 1;
 
+            }
+
+            sw = new StreamWriter("TestFile.TXT");
 
             Graphics g;
             g = Graphics.FromImage(DrawArea);
@@ -99,6 +109,7 @@ namespace COMPortTest
         {
             timer1.Enabled = false;
             ComPort.Close();
+            sw.Close();
         }
 
         delegate void SetTextCallback(string text);
@@ -130,9 +141,7 @@ namespace COMPortTest
                 cmdRec = InputDataBuffer.Substring(0, 4);
 
                 if("F101"== cmdRec)
-                {
-                    //-5.5417x+67.6
-                    
+                {                    
                     parRec0 = InputDataBuffer.Substring(5, 3);
                     tmpADC = Convert.ToSingle(parRec0);
                     tempC = (0.1153F * tmpADC) - 34.629F;
@@ -160,7 +169,8 @@ namespace COMPortTest
 
         private void button4_Click(object sender, EventArgs e)
         {
-            strHeatingValue = "000";
+            strHeatingValue = "000";            
+
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -192,6 +202,12 @@ namespace COMPortTest
 
             label2.Text = tempC.ToString();
 
+
+            // Add some text to the file.
+            sw.Write(targetC.ToString() + ",");
+            sw.Write(label2.Text+",");
+            sw.WriteLine(strHeatingValue);
+
             /*
                         Graphics g;
                         g = Graphics.FromImage(DrawArea);
@@ -222,6 +238,7 @@ namespace COMPortTest
 
         private void button8_Click(object sender, EventArgs e)
         {
+            targetC = Convert.ToSingle(textBox3.Text);
             timer1.Enabled = true;
         }
 
